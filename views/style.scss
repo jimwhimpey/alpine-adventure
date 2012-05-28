@@ -8,11 +8,22 @@
 // 	BODY
 
 	html {
-		text-align: center;
-		background: #0D191B;
+		background: #111;
 		body {
 			width: 100%;
-			margin: 100px auto 200px auto;
-			position: relative;
+			margin: 30px auto;
 		}
 	}
+
+
+// ==========================================
+// 	HEADING
+
+	h1 {
+		font-family: "MarkerfieldRegular", Helvetica;
+		font-size: 100px;
+		color: #333;
+		text-transform: uppercase;
+		text-align: center;
+		text-shadow: #000 0 0 30px;
+		}
