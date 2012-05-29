@@ -4,5 +4,18 @@
 		%title Jim's Alpine Adventure
 		%link{:rel => "stylesheet", :href => "/markerfield.css"}
 		%link{:rel => "stylesheet", :href => "/style.css"}
+		%link{:rel => "alternate", :type => "application/rss+xml", :title => "Jim's Alpine Adventure", :href => "http://api.flickr.com/services/feeds/photos_public.gne?id=40575690@N00&amp;tags=alpine-adventure&amp;lang=en-us&amp;format=rss_200"}
 	%body{:class => "home"}
-		%h1 Jim's Alpine Adventure
+		%h1 
+			%a{:href => "http://jimwhimpey.com"} Jim's 
+			Alpine Adventure
+		%ol{:id => "photos"}
+			- @photos.each do |photo|
+				%li
+					%a{:href => photo['url'], :class => "photo", :style => "background-image: url(#{photo['large_url']})"}
+						%img{:src => photo['large_url'], :width => photo['width'], :height => photo['height']}
+					.details
+						%h2
+							%a{:href => photo['url']}=photo['title']
+						.description
+							#{photo['description']}
