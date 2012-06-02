@@ -43,9 +43,6 @@ get '/' do
   # API call to get the correct size
   photos_xml.each do |photo_xml|
 
-		p "============================================"
-		p photo_xml
-
     # Make the call for this individual photo's sizes and it's info
     sizes_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=cb1cb6d2a45be697d708497bb9a3989d&photo_id=#{photo_xml['id']}")
     info_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=cb1cb6d2a45be697d708497bb9a3989d&photo_id=#{photo_xml['id']}")
@@ -72,14 +69,17 @@ get '/' do
   
       # Get the title, description, comment count and URL of the photo
       title = info_doc.css('photo title')[0].content
-      description = info_doc.css('photo description')[0].content
+      description = Maruku.new(info_doc.css('photo description')[0].content).to_html
       url = info_doc.css('photo urls url[type=photopage]')[0].content
+			date = Time.at(info_doc.css('photo dates')[0]['posted'].to_i)
+			date = date.strftime("%A, #{date.day.ordinalize} of %b, %Y")
   
       # Create hash of this photo's data
       photo = Hash[ "large_url" => large_url,
                     "title" => title,
                     "description" => description,
                     "url" => url,
+										"date" => date,
                     "width" => large_width,
                     "height" => large_height]
   
@@ -93,4 +93,20 @@ get '/' do
   # Render the HAML template
   haml :home
 
+end
+
+
+class Fixnum
+  def ordinalize
+    if (11..13).include?(self % 100)
+      "#{self}th"
+    else
+      case self % 10
+        when 1; "#{self}st"
+        when 2; "#{self}nd"
+        when 3; "#{self}rd"
+        else    "#{self}th"
+      end
+    end
+  end
 end
