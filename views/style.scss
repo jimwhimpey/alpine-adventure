@@ -27,7 +27,7 @@
 		background: #111;
 		body {
 			width: 1030px;
-			margin: 100px auto;
+			margin: 80px auto;
 		}
 	}
 
@@ -35,17 +35,25 @@
 // ==========================================
 // 	HEADING
 
-	h1 {
-		font-family: "MarkerfieldRegular", Helvetica, sans-serif;
-		font-size: 80px;
-		color: #333;
-		text-transform: uppercase;
-		text-shadow: #000 0 0 30px;
-		margin: 0 0 100px 0;
-		a {
-			color: #444;
-			text-decoration: none;
-			&:hover { color: #555; }
+	#header {
+		text-align: center;
+		border-bottom: 1px solid #222;
+		margin: 0 0 160px 0;
+		h1 {
+			display: inline-block;
+		  position: relative;
+		  top: 35px;
+			background: #111;
+			padding: 0 30px;	
+			font-family: "MarkerfieldRegular", Helvetica, sans-serif;
+			font-size: 80px;
+			color: #333;
+			text-transform: uppercase;
+			a {
+				color: #444;
+				text-decoration: none;
+				&:hover { color: #555; }
+			}
 		}
 	}
 	
@@ -55,14 +63,15 @@
 
 	ol#photos {
 		li {
-			margin: 0 0 100px 0;
+			margin: 0 0 120px 0;
+			width: 100%;
 			a.photo {
 				display: block;
 				float: left;
 				border: 5px solid #000;
 				@include border-radius(10px);
 				@include box-shadow(20px, #000);
-				margin: 0 0 20px 0;
+				margin: 0 0 35px 0;
 				&:hover {
 					@include box-shadow(40px, #000);
 				}
@@ -71,32 +80,49 @@
 					opacity: 0;
 				}
 			}
-			.date {
-				color: #333;
-				font: italic 14px Helvetica, sans-serif;
-				margin: 0 0 5px 0;
-			}
-			h2 {
-				font-family: Helvetica, sans-serif;
-				font-size: 30px;
-				margin: 0 0 20px;
-				text-shadow: #000 1px 1px 0;
-				a {
-					color: #CCC;
-					text-decoration: none;
-					a:hover { color: #FFF; }
+			.details {
+				float: left;
+				width: 700px;
+				margin-left: 40px;
+				.date {
+					color: #333;
+					font: italic 14px Helvetica, sans-serif;
+					margin: 0 0 5px 0;
+				}
+				h2 {
+					font-family: Helvetica, sans-serif;
+					font-size: 30px;
+					margin: 0 0 20px;
+					text-shadow: #000 1px 1px 0;
+					a {
+						color: #CCC;
+						text-decoration: none;
+						a:hover { color: #FFF; }
+					}
+				}
+				.description {
+					font: normal 18px/26px 'PT Serif', Georgia, serif;
+					color: #777;
+					width: 700px;
+					text-shadow: #000 1px 1px 0;
+					a {
+						color: #CCC;
+						text-decoration: none;
+					}
+					p { margin-bottom: 12px; }
 				}
 			}
-			.description {
-				font: normal 18px/26px 'PT Serif', Georgia, serif;
-				color: #777;
-				width: 70%;
-				text-shadow: #000 1px 1px 0;
-				a {
-					color: #CCC;
-					text-decoration: none;
+			.map {
+				width: 200px;
+				margin: 12px 40px 0 0;
+				float: right;
+				a img {
+					border: 1px solid #000;
+					@include border-radius(10px);
+					@include box-shadow(5px, #000);
+					opacity: 0.4;
 				}
-				p { margin-bottom: 12px; }
+				a:hover img { opacity: 1; }
 			}
 		}
 	}

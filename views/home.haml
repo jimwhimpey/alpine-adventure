@@ -7,9 +7,10 @@
 		%link{:rel => "stylesheet", :href => "http://fonts.googleapis.com/css?family=PT+Serif:400,700italic,700,400italic"}
 		%link{:rel => "alternate", :type => "application/rss+xml", :title => "Jim's Alpine Adventure", :href => "http://api.flickr.com/services/feeds/photos_public.gne?id=40575690@N00&amp;tags=alpine-adventure&amp;lang=en-us&amp;format=rss_200"}
 	%body{:class => "home"}
-		%h1 
-			%a{:href => "http://jimwhimpey.com"} Jim's 
-			Alpine Adventure
+		#header
+			%h1 
+				%a{:href => "http://jimwhimpey.com"} Jim's 
+				Alpine Adventure
 		%ol{:id => "photos"}
 			- @photos.each do |photo|
 				%li
@@ -22,3 +23,8 @@
 								#{photo['title']}
 						.description
 							#{photo['description']}
+					.map
+						%a{:href => "http://maps.google.com/maps?q=#{photo['lat']},#{photo['long']}"}
+							%img{:src => "http://maps.googleapis.com/maps/api/staticmap?center=#{photo['lat']},#{photo['long']}\&zoom=10\&size=200x200\&markers=color:red%7Csize:small%7C#{photo['lat']},#{photo['long']}\&sensor=false\&style=feature:all%7Csaturation:-100%7Cinvert_lightness:true"}
+					.clear{:style => "clear:both;"}
+							

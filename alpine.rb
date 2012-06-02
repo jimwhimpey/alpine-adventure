@@ -74,6 +74,10 @@ get '/' do
 			date = Time.at(info_doc.css('photo dates')[0]['posted'].to_i)
 			date = date.strftime("%A, #{date.day.ordinalize} of %b, %Y")
   
+			# Location
+			lat = info_doc.css('photo location')[0]['latitude']
+			long = info_doc.css('photo location')[0]['longitude']
+	
       # Create hash of this photo's data
       photo = Hash[ "large_url" => large_url,
                     "title" => title,
@@ -81,8 +85,13 @@ get '/' do
                     "url" => url,
 										"date" => date,
                     "width" => large_width,
-                    "height" => large_height]
+                    "height" => large_height,
+										"lat" => lat,
+										"long" => long]
   
+										p lat
+										p long
+	
       # Add that hash to the photos array
       @photos << photo
 
