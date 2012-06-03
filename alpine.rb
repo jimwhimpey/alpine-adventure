@@ -8,7 +8,6 @@ require 'curb'
 require 'nokogiri'
 require 'maruku'
 require 'open-uri'
-require 'json'
 
 enable :sessions
 
