@@ -1,2 +1,2 @@
-require 'alpine'
+require 'alpine.rb'
 run Sinatra::Application
