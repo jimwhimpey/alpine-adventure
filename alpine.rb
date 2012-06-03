@@ -32,6 +32,8 @@ get '/' do
   # Parse the XML
   doc = Nokogiri::XML(call.body_str)
 	
+	p call.body_str
+	
   # Grab all the photo elements
   photos_xml = doc.css('rsp photos photo')
 	
@@ -74,8 +76,13 @@ get '/' do
 			date = date.strftime("%A, #{date.day.ordinalize} of %b, %Y")
   
 			# Location
-			lat = info_doc.css('photo location')[0]['latitude']
-			long = info_doc.css('photo location')[0]['longitude']
+			if (info_doc.css('photo location').count > 0) then
+				lat = info_doc.css('photo location')[0]['latitude']
+				long = info_doc.css('photo location')[0]['longitude']
+			else
+				lat = "none"
+				long = "none"
+			end
 	
       # Create hash of this photo's data
       photo = Hash[ "large_url" => large_url,

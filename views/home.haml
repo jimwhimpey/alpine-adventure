@@ -12,19 +12,23 @@
 				%a{:href => "http://jimwhimpey.com"} Jim's 
 				Alpine Adventure
 		%ol{:id => "photos"}
-			- @photos.each do |photo|
-				%li
-					%a{:href => photo['url'], :class => "photo", :style => "background-image: url(#{photo['large_url']})"}
-						%img{:src => photo['large_url'], :width => photo['width'], :height => photo['height']}
-					.details
-						.date #{photo['date']}
-						%h2
-							%a{:href => photo['url']}
-								#{photo['title']}
-						.description
-							#{photo['description']}
-					.map
-						%a{:href => "http://maps.google.com/maps?q=#{photo['lat']},#{photo['long']}"}
-							%img{:src => "http://maps.googleapis.com/maps/api/staticmap?center=#{photo['lat']},#{photo['long']}\&zoom=10\&size=200x200\&markers=color:red%7Csize:small%7C#{photo['lat']},#{photo['long']}\&sensor=false\&style=feature:all%7Csaturation:-100%7Cinvert_lightness:true"}
-					.clear{:style => "clear:both;"}
+			- if @photos.count > 1 then
+				- @photos.each do |photo|
+					%li
+						%a{:href => photo['url'], :class => "photo", :style => "background-image: url(#{photo['large_url']})"}
+							%img{:src => photo['large_url'], :width => photo['width'], :height => photo['height']}
+						.details
+							.date #{photo['date']}
+							%h2
+								%a{:href => photo['url']}
+									#{photo['title']}
+							.description
+								#{photo['description']}
+						- if photo['lat'] != "none" then
+							.map
+								%a{:href => "http://maps.google.com/maps?q=#{photo['lat']},#{photo['long']}"}
+									%img{:src => "http://maps.googleapis.com/maps/api/staticmap?center=#{photo['lat']},#{photo['long']}\&zoom=10\&size=200x200\&markers=color:red%7Csize:small%7C#{photo['lat']},#{photo['long']}\&sensor=false\&style=feature:all%7Csaturation:-100%7Cinvert_lightness:true"}
+						.clear{:style => "clear:both;"}
+			- else
+				%li None
 							
