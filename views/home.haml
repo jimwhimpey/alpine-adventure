@@ -12,7 +12,7 @@
 				%a{:href => "http://jimwhimpey.com"} Jim's 
 				Alpine Adventure
 		%ol{:id => "photos"}
-			- if @photos.count > 1 then
+			- if @photos.count > 0 then
 				- @photos.each do |photo|
 					%li
 						%a{:href => photo['url'], :class => "photo", :style => "background-image: url(#{photo['large_url']})"}

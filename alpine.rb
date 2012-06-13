@@ -32,8 +32,6 @@ get '/' do
   # Parse the XML
   doc = Nokogiri::XML(call.body_str)
 	
-	p call.body_str
-	
   # Grab all the photo elements
   photos_xml = doc.css('rsp photos photo')
 	
